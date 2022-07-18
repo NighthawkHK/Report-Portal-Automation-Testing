@@ -15,7 +15,6 @@ public class DashboardPage extends BasePage {
     }
 
     public String getPageTitle() {
-        explicitWait.until(ExpectedConditions.visibilityOf(titlePage));
         return titlePage.getText();
     }
 }

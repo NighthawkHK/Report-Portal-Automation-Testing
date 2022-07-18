@@ -14,7 +14,8 @@
         <webdrivermanager.version>5.1.0</webdrivermanager.version>
         <testng.version>7.5</testng.version>
         <selenium.version>4.3.0</selenium.version>
-        <log4j.logger.version>1.2.17</log4j.logger.version>
+        <log4j.core.version>2.18.0</log4j.core.version>
+        <log4j.api.version>2.18.0</log4j.api.version>
     </properties>
 
     <dependencies>
@@ -35,9 +36,14 @@
             <version>${selenium.version}</version>
         </dependency>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.logger.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.api.version}</version>
         </dependency>
     </dependencies>
 </project>

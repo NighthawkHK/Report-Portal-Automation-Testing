@@ -1,6 +1,5 @@
 package utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -8,12 +7,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
-public class WebDriverHandler {
+public class WebDriverManager {
 
     private static WebDriver driver;
     private static PropertyReader propertyReader;
 
-    private WebDriverHandler() {
+    private WebDriverManager() {
     }
 
     public static WebDriver getDriver() {
@@ -38,15 +37,15 @@ public class WebDriverHandler {
         private static WebDriver initializeWebDriver(WebDriverType driverType) {
             switch (driverType) {
                 case CHROME:
-                    WebDriverManager.chromedriver().setup();
+                    io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
                     break;
                 case FIREFOX:
-                    WebDriverManager.firefoxdriver().setup();
+                    io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     break;
                 case EDGE:
-                    WebDriverManager.edgedriver().setup();
+                    io.github.bonigarcia.wdm.WebDriverManager.edgedriver().setup();
                     driver = new EdgeDriver();
                     break;
                 default:

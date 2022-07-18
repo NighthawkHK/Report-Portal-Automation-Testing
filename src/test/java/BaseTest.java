@@ -3,7 +3,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import pages.AllPages;
 import utils.PropertyReader;
-import utils.WebDriverHandler;
+import utils.WebDriverManager;
 
 public abstract class BaseTest {
 
@@ -11,7 +11,7 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        WebDriver driver = WebDriverHandler.getDriver();
+        WebDriver driver = WebDriverManager.getDriver();
         allPages = new AllPages(driver);
         PropertyReader configFileReader = new PropertyReader();
         String url = configFileReader.getApplicationUrl();
@@ -20,6 +20,6 @@ public abstract class BaseTest {
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-        WebDriverHandler.closeDriver();
+        WebDriverManager.closeDriver();
     }
 }

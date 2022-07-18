@@ -8,13 +8,12 @@ public class PropertyReader {
     private final Properties properties;
 
     public PropertyReader() {
-        String propertyFilePath = "src/main/resources/configs/webdriver.properties";
+        String propertyFilePath = "src/main/resources/webdriver.properties";
         try (BufferedReader reader = new BufferedReader(new FileReader(propertyFilePath))) {
             properties = new Properties();
             properties.load(reader);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Configuration properties was not found at " + propertyFilePath);
+            throw new RuntimeException("Configuration file was not found at " + propertyFilePath);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

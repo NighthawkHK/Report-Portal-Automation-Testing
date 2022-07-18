@@ -9,17 +9,14 @@ import java.time.Duration;
 
 public abstract class BasePage {
 
-    protected WebDriver driver;
-    protected WebDriverWait explicitWait;
+    protected final WebDriver driver;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
-        PropertyReader propertyReader = new PropertyReader();
-        explicitWait = new WebDriverWait(this.driver, Duration.ofSeconds(propertyReader.getImplicitlyWait()));
     }
 
-    public WebDriverWait getCustomExplicitWaiter(final long secondsToWait) {
+    public WebDriverWait getExplicitWaiter(final long secondsToWait) {
         return new WebDriverWait(this.driver, Duration.ofSeconds(secondsToWait));
     }
 }
