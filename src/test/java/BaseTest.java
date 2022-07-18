@@ -1,4 +1,7 @@
+import listeners.WebDriverEventHandler;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.openqa.selenium.support.events.WebDriverListener;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import pages.AllPages;
@@ -11,11 +14,13 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        WebDriver driver = WebDriverManager.getDriver();
-        allPages = new AllPages(driver);
+        WebDriver originalDriver = WebDriverManager.getDriver();
+        WebDriverListener listener = new WebDriverEventHandler();
+        WebDriver decoratedDriver = new EventFiringDecorator(listener).decorate(originalDriver);
+        allPages = new AllPages(decoratedDriver);
         PropertyReader configFileReader = new PropertyReader();
         String url = configFileReader.getApplicationUrl();
-        driver.navigate().to(url);
+        decoratedDriver.navigate().to(url);
     }
 
     @AfterClass(alwaysRun = true)
