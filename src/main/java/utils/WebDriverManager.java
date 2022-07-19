@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 
 import java.time.Duration;
 
@@ -19,7 +20,7 @@ public class WebDriverManager {
         if (driver == null) {
             propertyReader = new PropertyReader();
             WebDriverType driverType = WebDriverType.valueOf(propertyReader.getBrowserType());
-            driver = DriverFactory.initializeWebDriver(driverType);
+            driver = new EventFiringDecorator(new WebDriverEventHandler()).decorate(DriverFactory.initializeWebDriver(driverType));
         }
         return driver;
     }
