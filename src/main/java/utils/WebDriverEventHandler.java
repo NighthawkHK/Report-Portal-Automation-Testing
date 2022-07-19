@@ -28,7 +28,7 @@ public class WebDriverEventHandler implements WebDriverListener {
 
     @Override
     public void afterClick(WebElement element) {
-        logger.info("Successfully clicked on web element {}", element);
+        logger.info("Successfully clicked: {}", element);
     }
 
     @Override
