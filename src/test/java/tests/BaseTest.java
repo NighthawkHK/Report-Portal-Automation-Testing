@@ -1,4 +1,6 @@
-import listeners.WebDriverEventHandler;
+package tests;
+
+import utils.WebDriverEventHandler;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.openqa.selenium.support.events.WebDriverListener;
