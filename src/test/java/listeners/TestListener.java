@@ -20,11 +20,11 @@ public class TestListener implements ITestListener {
     private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy HH-mm-ss");
 
     public void onTestStart(ITestResult result) {
-        logger.info("Starting new Test: " + result.getName());
+        logger.info("Starting Test: " + result.getName());
     }
 
     public void onTestSuccess(ITestResult result) {
-        logger.info("Test Succeeded: " + result.getName());
+        logger.info("Test Passed: " + result.getName());
     }
 
     public void onTestFailure(ITestResult result) {
