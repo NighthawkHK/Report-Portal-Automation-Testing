@@ -1,17 +1,23 @@
 package utils;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Properties;
 
 public class PropertyReader {
 
-    private final Properties properties;
+    private static final Properties configProperties = readConfigFile();
 
-    public PropertyReader() {
+    private PropertyReader() { }
+
+    private static Properties readConfigFile() {
         String propertyFilePath = "src/main/resources/webdriver.properties";
         try (BufferedReader reader = new BufferedReader(new FileReader(propertyFilePath))) {
-            properties = new Properties();
+            Properties properties = new Properties();
             properties.load(reader);
+            return properties;
         } catch (FileNotFoundException e) {
             throw new RuntimeException("Configuration file was not found at " + propertyFilePath);
         } catch (IOException e) {
@@ -19,30 +25,12 @@ public class PropertyReader {
         }
     }
 
-    public String getBrowserType() {
-        String browserType = properties.getProperty("browserType");
-        if (browserType != null) {
-            return browserType;
+    public static String getProperty(final String propertyName) {
+        String property = configProperties.getProperty(propertyName);
+        if (property != null) {
+            return property;
         } else {
-            throw new RuntimeException("browserType is not specified in property file.");
-        }
-    }
-
-    public long getImplicitlyWait() {
-        String implicitlyWait = properties.getProperty("implicitlyWait");
-        if (implicitlyWait != null) {
-            return Long.parseLong(implicitlyWait);
-        } else {
-            throw new RuntimeException("implicitlyWait is not specified in property file.");
-        }
-    }
-
-    public String getApplicationUrl() {
-        String url = properties.getProperty("url");
-        if (url != null) {
-            return url;
-        } else {
-            throw new RuntimeException("url is not specified in property file.");
+            throw new RuntimeException(String.format("Property with name '%s' is not specified in the configuration file.", propertyName));
         }
     }
 }

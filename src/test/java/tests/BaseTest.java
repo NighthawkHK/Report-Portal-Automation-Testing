@@ -10,13 +10,13 @@ import utils.WebDriverManager;
 public abstract class BaseTest {
 
     protected AllPages allPages;
-    private final PropertyReader configFileReader = new PropertyReader();
+    private static final String URL = PropertyReader.getProperty("url");
 
     @BeforeClass
     public void setUp() {
         WebDriver driver = WebDriverManager.getDriver();
         allPages = new AllPages(driver);
-        driver.navigate().to(configFileReader.getApplicationUrl());
+        driver.navigate().to(URL);
     }
 
     @AfterClass(alwaysRun = true)
