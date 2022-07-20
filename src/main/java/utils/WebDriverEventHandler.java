@@ -38,6 +38,6 @@ public class WebDriverEventHandler implements WebDriverListener {
 
     @Override
     public void afterQuit(WebDriver driver) {
-        logger.info("Driver {} has successfully turned off", driver);
+        logger.info("Driver has successfully turned off");
     }
 }
