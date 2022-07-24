@@ -1,6 +1,7 @@
 package pages;
 
 import entities.User;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,7 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    @Step("Sign in with user: {0}")
     public DashboardPage signIn(User user) {
         Waiter.getExplicitWaiter(driver, 10).until(ExpectedConditions.visibilityOf(loginInput));
         loginInput.sendKeys(user.getName());
