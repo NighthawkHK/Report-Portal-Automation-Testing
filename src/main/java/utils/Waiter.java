@@ -7,7 +7,9 @@ import java.time.Duration;
 
 public class Waiter {
 
-    private Waiter() { }
+    private Waiter() {
+        throw new IllegalStateException("This is Utility class.");
+    }
 
     public static WebDriverWait getExplicitWaiter(final WebDriver driver, final long secondsToWait) {
         return new WebDriverWait(driver, Duration.ofSeconds(secondsToWait));

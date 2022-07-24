@@ -10,7 +10,9 @@ public class PropertyReader {
 
     private static final Properties configProperties = readConfigFile();
 
-    private PropertyReader() { }
+    private PropertyReader() {
+        throw new IllegalStateException("This is utility class.");
+    }
 
     private static Properties readConfigFile() {
         String propertyFilePath = "src/main/resources/webdriver.properties";
