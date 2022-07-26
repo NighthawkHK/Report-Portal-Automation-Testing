@@ -15,7 +15,7 @@ public abstract class BasePage {
     }
 
     @Step
-    public void sendKeysToWebElement(final WebElement element, final String keysToSend) {
+    public void sendKeysToWebElement(final WebElement element, final CharSequence... keysToSend) {
         element.clear();
         element.sendKeys(keysToSend);
     }
