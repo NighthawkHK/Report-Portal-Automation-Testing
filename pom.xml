@@ -19,6 +19,8 @@
         <lombok.version>1.18.24</lombok.version>
         <allure.testng.version>2.18.1</allure.testng.version>
         <aspectj.version>1.9.9.1</aspectj.version>
+        <hamcrest.version>2.2</hamcrest.version>
+        <json.version>20220320</json.version>
     </properties>
 
     <dependencies>
@@ -64,6 +66,17 @@
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.testng.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
         </dependency>
     </dependencies>
 

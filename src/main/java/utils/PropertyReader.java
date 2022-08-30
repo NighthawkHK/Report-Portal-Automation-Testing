@@ -1,13 +1,17 @@
 package utils;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+@Log4j2
 public class PropertyReader {
 
+    private static final String FILE_PATH = "src/main/resources/webdriver.properties";
     private static final Properties configProperties = readConfigFile();
 
     private PropertyReader() {
@@ -15,14 +19,15 @@ public class PropertyReader {
     }
 
     private static Properties readConfigFile() {
-        String propertyFilePath = "src/main/resources/webdriver.properties";
-        try (BufferedReader reader = new BufferedReader(new FileReader(propertyFilePath))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             Properties properties = new Properties();
             properties.load(reader);
             return properties;
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("Configuration file was not found at " + propertyFilePath);
+            log.error("Configuration file was not found at " + FILE_PATH, e);
+            throw new RuntimeException(e);
         } catch (IOException e) {
+            log.error("Something went wrong while reading file " + FILE_PATH, e);
             throw new RuntimeException(e);
         }
     }

@@ -10,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import tests.data.StaticDataProvider;
 
 @Listeners(TestListener.class)
 public class LoginTest extends BaseTest {
@@ -19,7 +20,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Description("Verify user login functionality")
     @Test(description="Valid Login Scenario with correct username and password.",
-            dataProvider = "users", dataProviderClass = tests.data.StaticProvider.class)
+            dataProvider = "users", dataProviderClass = StaticDataProvider.class)
     public void verifyLoginIsSuccessful(User user) {
         Assert.assertEquals(loginPage.signIn(user).getPageTitle(), "ALL DASHBOARDS");
     }
