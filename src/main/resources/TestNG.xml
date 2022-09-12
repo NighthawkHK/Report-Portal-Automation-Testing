@@ -9,4 +9,9 @@
             <class name="tests.LoginTest" />
         </classes>
     </test>
+    <test name="Parallel Tests" parallel="methods" thread-count="2">
+        <classes>
+            <class name="tests.LaunchTest"/>
+        </classes>
+    </test>
 </suite>
