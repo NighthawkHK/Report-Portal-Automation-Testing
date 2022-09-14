@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.sidebars.DashboardPage;
+import pages.sidebars.AllDashboardsPage;
 
 public class LoginPage extends BasePage {
 
@@ -23,10 +23,10 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Sign in with user: {0}")
-    public DashboardPage signIn(User user) {
+    public AllDashboardsPage signIn(User user) {
         sendKeysToWebElement(loginInput, user.getName());
         sendKeysToWebElement(passwordInput, user.getPassword());
         loginButton.click();
-        return new DashboardPage(driver);
+        return new AllDashboardsPage(driver);
     }
 }

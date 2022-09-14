@@ -3,7 +3,8 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.sidebars.LaunchPage;
+import pages.sidebars.AllDashboardsPage;
+import pages.sidebars.AllLaunchesPage;
 
 public class LeftPanelMenu extends BasePage {
 
@@ -14,9 +15,15 @@ public class LeftPanelMenu extends BasePage {
     }
 
     @Step("Open all launches tab")
-    public LaunchPage openAllLaunchesTab() {
+    public AllLaunchesPage openAllLaunchesTab() {
         findElementByLocator(By.xpath(String.format(MENU_ITEM_LOCATOR, MenuItem.LAUNCHES.getName()))).click();
-        return new LaunchPage(driver);
+        return new AllLaunchesPage(driver);
+    }
+
+    @Step("Open all dashboards tab")
+    public AllDashboardsPage openAllDashboardsTab() {
+        findElementByLocator(By.xpath(String.format(MENU_ITEM_LOCATOR, MenuItem.DASHBOARDS.getName()))).click();
+        return new AllDashboardsPage(driver);
     }
 
     private enum MenuItem {
