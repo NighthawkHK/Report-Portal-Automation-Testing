@@ -12,7 +12,7 @@ import java.util.Properties;
 public class PropertyReader {
 
     private static final String FILE_PATH = "src/main/resources/webdriver.properties";
-    private static final Properties configProperties = readConfigFile();
+    private static final Properties CONFIG_PROPERTIES = readConfigFile();
 
     private PropertyReader() {
         throw new IllegalStateException("This is utility class.");
@@ -33,7 +33,7 @@ public class PropertyReader {
     }
 
     public static String getProperty(final String propertyName) {
-        String property = configProperties.getProperty(propertyName);
+        String property = CONFIG_PROPERTIES.getProperty(propertyName);
         if (property != null) {
             return property;
         } else {

@@ -12,24 +12,24 @@ public abstract class BasePage {
 
     protected final WebDriver driver;
 
-    protected BasePage(WebDriver driver) {
+    protected BasePage(final WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
     }
 
     @Step
-    public void sendKeysToWebElement(final WebElement element, final CharSequence... keysToSend) {
+    protected void sendKeysToWebElement(final WebElement element, final CharSequence... keysToSend) {
         element.clear();
         element.sendKeys(keysToSend);
     }
 
     @Step
-    public WebElement findElementByLocator(final By locator) {
+    protected WebElement findElementByLocator(final By locator) {
         return driver.findElement(locator);
     }
 
     @Step
-    public List<WebElement> findElementsByLocator(final By locator) {
+    protected List<WebElement> findElementsByLocator(final By locator) {
         return driver.findElements(locator);
     }
 }

@@ -7,11 +7,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.function.Function;
 
-public class Waiter {
+public class Spectator {
 
     private static final long DEFAULT_EXPLICIT_WAITER = Long.parseLong(PropertyReader.getProperty("explicitlyWait"));
 
-    private Waiter() {
+    private Spectator() {
         throw new IllegalStateException("This is Utility class.");
     }
 
@@ -22,6 +22,12 @@ public class Waiter {
     public static void waitForPageToLoad(final WebDriver driver) {
         Function<WebDriver, Boolean> loadCondition =
                 x -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+        getWebDriverWait(driver).until(loadCondition);
+    }
+
+    public static void waitForAjaxProcessed(final WebDriver driver) {
+        Function<WebDriver, Boolean> loadCondition =
+                x -> ((JavascriptExecutor) driver).executeScript("return jQuery.active").equals("0");
         getWebDriverWait(driver).until(loadCondition);
     }
 }

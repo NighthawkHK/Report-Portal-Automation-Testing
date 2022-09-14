@@ -8,11 +8,11 @@ import pages.BasePage;
 
 import java.util.List;
 
-public class LaunchPage extends BasePage {
+public class AllLaunchesPage extends BasePage {
 
     private static final String CELL_LOCATOR = "//span[text()='%d']//ancestor::div[contains(@class, 'grid-row')]//div[contains(@class, '%s')]//a";
 
-    public LaunchPage(WebDriver driver) {
+    public AllLaunchesPage(WebDriver driver) {
         super(driver);
     }
 
