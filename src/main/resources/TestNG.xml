@@ -6,12 +6,12 @@
     </listeners>
     <test name="Test">
         <classes>
-            <class name="tests.LoginTest" />
+            <class name="tests.ui.LoginTest" />
         </classes>
     </test>
     <test name="Parallel Tests" parallel="methods" thread-count="2">
         <classes>
-            <class name="tests.LaunchTest"/>
+            <class name="tests.ui.LaunchTest"/>
         </classes>
     </test>
 </suite>

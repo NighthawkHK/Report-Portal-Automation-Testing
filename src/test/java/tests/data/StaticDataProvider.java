@@ -1,8 +1,11 @@
 package tests.data;
 
 import entities.User;
+import entities.models.Launch;
 import org.testng.annotations.DataProvider;
-import utils.JsonReader;
+import utils.JsonParser;
+
+import java.io.File;
 
 public class StaticDataProvider {
 
@@ -15,12 +18,13 @@ public class StaticDataProvider {
 
     @DataProvider(name = "launches")
     public static Object[][] launchesResults() {
-        return new Object[][] {
-                {JsonReader.getLaunchResults(0).get("launchNumber"), JsonReader.getLaunchResults(0).get("results")},
-                {JsonReader.getLaunchResults(1).get("launchNumber"), JsonReader.getLaunchResults(1).get("results")},
-                {JsonReader.getLaunchResults(2).get("launchNumber"), JsonReader.getLaunchResults(2).get("results")},
-                {JsonReader.getLaunchResults(3).get("launchNumber"), JsonReader.getLaunchResults(3).get("results")},
-                {JsonReader.getLaunchResults(4).get("launchNumber"), JsonReader.getLaunchResults(4).get("results")}
-        };
+        String filepath = "src/test/java/tests/data/jsons/launches_result.json";
+        Launch[] launches = JsonParser.readSource(new File(filepath), Launch[].class);
+        Object[][] objArray = new Object[launches.length][];
+        for (int i = 0; i < launches.length; i++) {
+            objArray[i] = new Object[1];
+            objArray[i][0] = launches[i];
+        }
+        return objArray;
     }
 }

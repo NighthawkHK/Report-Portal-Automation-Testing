@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import core.WebDriverManager;
 import org.openqa.selenium.WebDriver;

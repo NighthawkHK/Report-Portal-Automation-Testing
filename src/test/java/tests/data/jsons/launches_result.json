@@ -1,70 +1,68 @@
-{
-  "launches": [
-    {
-      "launchNumber": 1,
-      "results": {
-        "total": 10,
-        "passed": 1,
-        "failed": 9,
-        "skipped": 0,
-        "productBug": 0,
-        "autobug": 1,
-        "systemIssue": 8,
-        "toInvestigate": 5
-      }
-    },
-    {
-      "launchNumber": 2,
-      "results": {
-        "total": 15,
-        "passed": 5,
-        "failed": 9,
-        "skipped": 1,
-        "productBug": 1,
-        "autobug": 5,
-        "systemIssue": 4,
-        "toInvestigate": 8
-      }
-    },
-    {
-      "launchNumber": 3,
-      "results": {
-        "total": 20,
-        "passed": 10,
-        "failed": 8,
-        "skipped": 2,
-        "productBug": 4,
-        "autobug": 4,
-        "systemIssue": 0,
-        "toInvestigate": 10
-      }
-    },
-    {
-      "launchNumber": 4,
-      "results": {
-        "total": 25,
-        "passed": 20,
-        "failed": 5,
-        "skipped": 0,
-        "productBug": 4,
-        "autobug": 1,
-        "systemIssue": 0,
-        "toInvestigate": 2
-      }
-    },
-    {
-      "launchNumber": 5,
-      "results": {
-        "total": 30,
-        "passed": 30,
-        "failed": 0,
-        "skipped": 0,
-        "productBug": 0,
-        "autobug": 0,
-        "systemIssue": 0,
-        "toInvestigate": 0
-      }
+[
+  {
+    "launchNumber": 1,
+    "results": {
+      "total": 10,
+      "passed": 1,
+      "failed": 9,
+      "skipped": 0,
+      "productBug": 0,
+      "autobug": 1,
+      "systemIssue": 8,
+      "toInvestigate": 5
     }
-  ]
-}
+  },
+  {
+    "launchNumber": 2,
+    "results": {
+      "total": 15,
+      "passed": 5,
+      "failed": 9,
+      "skipped": 1,
+      "productBug": 1,
+      "autobug": 5,
+      "systemIssue": 4,
+      "toInvestigate": 8
+    }
+  },
+  {
+    "launchNumber": 3,
+    "results": {
+      "total": 20,
+      "passed": 10,
+      "failed": 8,
+      "skipped": 2,
+      "productBug": 4,
+      "autobug": 4,
+      "systemIssue": 0,
+      "toInvestigate": 10
+    }
+  },
+  {
+    "launchNumber": 4,
+    "results": {
+      "total": 25,
+      "passed": 20,
+      "failed": 5,
+      "skipped": 0,
+      "productBug": 4,
+      "autobug": 1,
+      "systemIssue": 0,
+      "toInvestigate": 2
+    }
+  },
+  {
+    "launchNumber": 5,
+    "results": {
+      "total": 30,
+      "passed": 30,
+      "failed": 0,
+      "skipped": 0,
+      "productBug": 0,
+      "autobug": 0,
+      "systemIssue": 0,
+      "toInvestigate": 0
+    }
+  }
+]
 
