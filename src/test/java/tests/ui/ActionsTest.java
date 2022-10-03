@@ -13,27 +13,23 @@ import pages.DashboardPage;
 import pages.LeftPanelMenu;
 import pages.LoginPage;
 
-import static core.WebDriverManager.getDriver;
-
 @Listeners(TestListener.class)
 @Severity(SeverityLevel.NORMAL)
 public class ActionsTest extends BaseTest {
 
-    private final LoginPage loginPage = new LoginPage(getDriver());
-    private final LeftPanelMenu leftPanelMenu = new LeftPanelMenu(getDriver());
     private static final String WIDGET_NAME = "INVESTIGATED PERCENTAGE OF LAUNCHES";
+    private final DashboardPage dashboardPage = new DashboardPage();
 
     @BeforeClass
     public void login() {
-        loginPage.signIn(new User("default", "1q2w3e"));
-        leftPanelMenu.openAllDashboardsTab()
+        new LoginPage().signIn(new User("default", "1q2w3e"));
+        new LeftPanelMenu().openAllDashboardsTab()
                 .selectDashboard("Demo Dashboard");
     }
 
     @Test
-    @Description("Verify user are able to dragNdrop component")
+    @Description("Verify user are able to drag&drop component")
     public void verifyDragNDropAction() {
-        DashboardPage dashboardPage = new DashboardPage(getDriver());
         int xAxisValueBeforeMove = dashboardPage.getWidgetLocation(WIDGET_NAME).getX();
         int xAxisValueForMove = xAxisValueBeforeMove > 500 ? -200 : 200;
 
@@ -44,7 +40,6 @@ public class ActionsTest extends BaseTest {
     @Test
     @Description("Verify user are able to resize component")
     public void verifyResizeAction() {
-        DashboardPage dashboardPage = new DashboardPage(getDriver());
         int widthValueBeforeResize = dashboardPage.getWidgetSize(WIDGET_NAME).getWidth();
 
         dashboardPage.resizeWidget(WIDGET_NAME, 100, 0);

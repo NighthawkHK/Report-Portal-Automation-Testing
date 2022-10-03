@@ -1,5 +1,6 @@
 package pages;
 
+import core.WebDriverManager;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,9 +13,9 @@ public abstract class BasePage {
 
     protected final WebDriver driver;
 
-    protected BasePage(final WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(this.driver, this);
+    protected BasePage() {
+        driver = WebDriverManager.getDriver();
+        PageFactory.initElements(driver, this);
     }
 
     @Step

@@ -2,7 +2,6 @@ package pages.sidebars;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
@@ -11,10 +10,6 @@ import java.util.List;
 public class AllLaunchesPage extends BasePage {
 
     private static final String CELL_LOCATOR = "//span[text()='%d']//ancestor::div[contains(@class, 'grid-row')]//div[contains(@class, '%s')]//a";
-
-    public AllLaunchesPage(WebDriver driver) {
-        super(driver);
-    }
 
     @Step("Get value for row with launch number {0} and column {1}")
     public int getValueFromSpecificColumn(int launchNumber, ColumnName columnName) {

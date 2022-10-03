@@ -2,7 +2,6 @@ package pages;
 
 import entities.User;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.sidebars.AllDashboardsPage;
@@ -18,15 +17,11 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//button[text()='Login']")
     private WebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
-
     @Step("Sign in with user: {0}")
     public AllDashboardsPage signIn(User user) {
         sendKeysToWebElement(loginInput, user.getName());
         sendKeysToWebElement(passwordInput, user.getPassword());
         loginButton.click();
-        return new AllDashboardsPage(driver);
+        return new AllDashboardsPage();
     }
 }

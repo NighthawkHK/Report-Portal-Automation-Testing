@@ -4,17 +4,12 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
 import utils.ActionHandler;
 
 public class DashboardPage extends BasePage {
 
     private static final String WIDGET_HEADER_LOCATOR = "//div[text()='%s']";
     private static final String WIDGET_RESIZABLE_ICON_LOCATOR = "//div[text()='%s']//ancestor::div[contains(@class, 'widgetsGrid')]//span[contains(@class, 'resizable-handle')]";
-
-    public DashboardPage(WebDriver driver) {
-        super(driver);
-    }
 
     @Step
     public DashboardPage moveWidgetByOffset(String widgetName, int xOffset, int yOffset) {
