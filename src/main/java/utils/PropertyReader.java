@@ -11,7 +11,7 @@ import java.util.Properties;
 @Log4j2
 public class PropertyReader {
 
-    private static final String FILE_PATH = "src/main/resources/webdriver.properties";
+    private static final String FILE_PATH = "src/main/resources/application.properties";
     private static final Properties CONFIG_PROPERTIES = readConfigFile();
 
     private PropertyReader() {

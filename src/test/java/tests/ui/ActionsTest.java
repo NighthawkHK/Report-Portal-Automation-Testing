@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import entities.User;
 import io.qameta.allure.Description;

@@ -1,20 +1,14 @@
 package entities;
 
-import lombok.Getter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.util.Objects;
 
-@Getter @ToString
+@Data
 public class User {
 
     private final String name;
     private final String password;
-
-    public User(String name, String password) {
-        this.name = name;
-        this.password = password;
-    }
 
     @Override
     public boolean equals(Object o) {

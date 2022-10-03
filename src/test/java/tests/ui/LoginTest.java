@@ -1,4 +1,4 @@
-package tests;
+package tests.ui;
 
 import core.WebDriverManager;
 import entities.User;
