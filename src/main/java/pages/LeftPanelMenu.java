@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.sidebars.AllDashboardsPage;
 import pages.sidebars.AllLaunchesPage;
+import pages.sidebars.DebugPage;
 
 public class LeftPanelMenu extends BasePage {
 
@@ -19,6 +20,12 @@ public class LeftPanelMenu extends BasePage {
     public AllDashboardsPage openAllDashboardsTab() {
         findElementByLocator(By.xpath(String.format(MENU_ITEM_LOCATOR, MenuItem.DASHBOARDS.getName()))).click();
         return new AllDashboardsPage();
+    }
+
+    @Step("Open debug tab")
+    public DebugPage openDebugTab() {
+        findElementByLocator(By.xpath(String.format(MENU_ITEM_LOCATOR, MenuItem.DEBUG.getName()))).click();
+        return new DebugPage();
     }
 
     private enum MenuItem {

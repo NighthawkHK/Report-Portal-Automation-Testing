@@ -11,7 +11,7 @@
     <properties>
         <jdk.version>11</jdk.version>
         <webdrivermanager.version>5.1.0</webdrivermanager.version>
-        <testng.version>7.5</testng.version>
+        <cucumber.version>7.8.1</cucumber.version>
         <selenium.version>4.3.0</selenium.version>
         <log4j.core.version>2.18.0</log4j.core.version>
         <log4j.api.version>2.18.0</log4j.api.version>
@@ -31,9 +31,14 @@
             <version>${webdrivermanager.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -72,7 +77,6 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>${hamcrest.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>

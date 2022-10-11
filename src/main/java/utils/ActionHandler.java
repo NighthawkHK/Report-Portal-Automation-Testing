@@ -27,4 +27,10 @@ public class ActionHandler {
                 .build()
                 .perform();
     }
+
+    public static void scrollToElement(final WebElement webElement) {
+        ACTIONS.scrollToElement(webElement)
+                .build()
+                .perform();
+    }
 }
