@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Project schema",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "usersQuantity": {
+      "type": "integer"
+    },
+    "launchesQuantity": {
+      "type": "integer"
+    },
+    "launchesPerUser": {
+      "type": "array",
+      "title": "The launches schema",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "fullName": {
+              "type": "string"
+            },
+            "count": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "fullName",
+            "count"
+          ]
+        }
+      ]
+    },
+    "uniqueTickets": {
+      "type": "integer"
+    },
+    "launchesPerWeek": {
+      "type": "string"
+    },
+    "lastRun": {
+      "type": "integer"
+    },
+    "creationDate": {
+      "type": "integer"
+    },
+    "entryType": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "null"
+    }
+  },
+  "required": [
+    "id",
+    "projectName",
+    "usersQuantity",
+    "launchesQuantity",
+    "launchesPerUser",
+    "uniqueTickets",
+    "launchesPerWeek",
+    "lastRun",
+    "creationDate",
+    "entryType",
+    "organization"
+  ],
+  "additionalProperties": false
+}
