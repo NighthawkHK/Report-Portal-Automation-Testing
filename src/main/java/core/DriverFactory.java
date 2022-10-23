@@ -14,14 +14,14 @@ import java.net.URL;
 import java.time.Duration;
 
 @Log4j2
-class WebDriverFactory {
+class DriverFactory {
 
-    private WebDriverFactory() {
+    private DriverFactory() {
     }
 
-    public static WebDriver initializeWebDriver(final BrowserType driverType) {
+    public static WebDriver initializeDriver(final Browser browser) {
         WebDriver webDriver;
-        switch (driverType) {
+        switch (browser) {
             case CHROME:
                 io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
                 webDriver = new ChromeDriver();
@@ -44,7 +44,7 @@ class WebDriverFactory {
                 }
                 break;
             default:
-                log.error("Unrecognized driver type: " + driverType);
+                log.error("Unrecognized browser: " + browser);
                 throw new IllegalArgumentException();
         }
         webDriver.manage().window().maximize();

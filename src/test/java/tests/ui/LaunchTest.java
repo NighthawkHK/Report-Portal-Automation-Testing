@@ -8,7 +8,7 @@ import org.testng.asserts.SoftAssert;
 import pages.LeftPanelMenu;
 import pages.LoginPage;
 import pages.sidebars.AllLaunchesPage;
-import tests.data.StaticDataProvider;
+import tests.data.TestDataProvider;
 
 public class LaunchTest extends BaseTest {
 
@@ -18,7 +18,7 @@ public class LaunchTest extends BaseTest {
         new LeftPanelMenu().openAllLaunchesTab();
     }
 
-    @Test(dataProvider = "launches", dataProviderClass = StaticDataProvider.class)
+    @Test(dataProvider = "launches", dataProviderClass = TestDataProvider.class)
     public void checkResultsOfLaunch(Launch launchInfo) {
         AllLaunchesPage allLaunchesPage = new AllLaunchesPage();
         SoftAssert softAssert = new SoftAssert();

@@ -1,6 +1,6 @@
 package utils;
 
-import core.WebDriverManager;
+import core.DriverSingleton;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -10,7 +10,7 @@ public class ActionHandler {
         throw new IllegalStateException("This is Utility class.");
     }
 
-    private static final Actions ACTIONS = new Actions(WebDriverManager.getDriver());
+    private static final Actions ACTIONS = new Actions(DriverSingleton.getDriver());
 
     public static void moveElementByOffset(final WebElement webElement, final int xOffset, final int yOffset) {
         ACTIONS.dragAndDropBy(webElement, xOffset, yOffset)

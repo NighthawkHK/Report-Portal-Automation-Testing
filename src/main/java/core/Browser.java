@@ -1,6 +1,6 @@
 package core;
 
-enum BrowserType {
+enum Browser {
     CHROME,
     EDGE,
     FIREFOX,

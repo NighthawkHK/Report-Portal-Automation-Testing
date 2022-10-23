@@ -4,7 +4,7 @@ import entities.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import listeners.TestListener;
+import listeners.TestNGListener;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
@@ -13,7 +13,7 @@ import pages.DashboardPage;
 import pages.LeftPanelMenu;
 import pages.LoginPage;
 
-@Listeners(TestListener.class)
+@Listeners(TestNGListener.class)
 @Severity(SeverityLevel.NORMAL)
 public class ActionsTest extends BaseTest {
 
