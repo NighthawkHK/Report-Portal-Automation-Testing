@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 import utils.PropertyReader;
 
+import java.time.Duration;
+
 @Log4j2
 public class DriverSingleton {
 
@@ -16,13 +18,7 @@ public class DriverSingleton {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            try {
-                Browser browser = Browser.valueOf(PropertyReader.getProperty("browserType"));
-                driver = new EventFiringDecorator(new DriverEventListener()).decorate(DriverFactory.initializeDriver(browser));
-            } catch (IllegalArgumentException e) {
-                log.error("Invalid value of enum " + PropertyReader.getProperty("browserType"), e);
-                throw new RuntimeException(e);
-            }
+            initializeDriver();
         }
         return driver;
     }
@@ -32,5 +28,24 @@ public class DriverSingleton {
             driver.quit();
             driver = null;
         }
+    }
+
+    private static void initializeDriver() {
+        String host = PropertyReader.getProperty("host");
+        Browser browser = Browser.valueOf(PropertyReader.getProperty("browserType"));
+        long implicitlyWait = Long.parseLong(PropertyReader.getProperty("implicitlyWait"));
+        switch (host) {
+            case "LOCAL":
+                driver = new LocalDriverImpl(browser).createDriver();
+                break;
+            case "REMOTE":
+                driver = new RemoteDriverImpl().createDriver();
+                break;
+            default:
+                throw new IllegalArgumentException("Undefined host");
+        }
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitlyWait));
+        driver = new EventFiringDecorator(new DriverEventListener()).decorate(driver);
     }
 }
