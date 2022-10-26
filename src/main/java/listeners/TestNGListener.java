@@ -1,7 +1,6 @@
 package listeners;
 
-import core.WebDriverManager;
-import io.qameta.allure.Attachment;
+import core.DriverSingleton;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -15,34 +14,32 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Log4j2
-public class TestListener implements ITestListener {
+public class TestNGListener implements ITestListener {
 
-    private static final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy HH-mm-ss");
+    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy HH-mm-ss");
 
-    @Attachment(value = "Screenshot", type = "image/png")
-    private byte[] takeScreenshotForAllure() {
-        return ((TakesScreenshot) WebDriverManager.getDriver()).getScreenshotAs(OutputType.BYTES);
-    }
-
+    @Override
     public void onTestStart(ITestResult result) {
         log.info("Starting Test: " + result.getName());
     }
 
+    @Override
     public void onTestSuccess(ITestResult result) {
         log.info("Test Passed: " + result.getName());
     }
 
+    @Override
     public void onTestFailure(ITestResult result) {
         log.info("Test Failed: " + result.getName());
-        File srcFile = ((TakesScreenshot) WebDriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
+        File srcFile = ((TakesScreenshot) DriverSingleton.getDriver()).getScreenshotAs(OutputType.FILE);
         try {
             FileUtils.copyFile(srcFile, new File("./target/screenshots-failure/" + dateFormatter.format(new Date()) + ".png"));
         } catch (IOException e) {
             log.error("Exception occurred while copying file: ", e);
         }
-        takeScreenshotForAllure();
     }
 
+    @Override
     public void onTestSkipped(ITestResult result) {
         log.info("Test Skipped: " + result.getName());
     }
