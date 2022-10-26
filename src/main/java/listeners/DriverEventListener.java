@@ -1,4 +1,4 @@
-package core;
+package listeners;
 
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverListener;
 
 @Log4j2
-public class WebDriverEventHandler implements WebDriverListener {
+public class DriverEventListener implements WebDriverListener {
 
     @Override
     public void beforeFindElement(WebDriver driver, By locator) {

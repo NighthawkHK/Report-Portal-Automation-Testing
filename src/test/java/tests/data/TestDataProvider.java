@@ -7,7 +7,7 @@ import utils.JsonParser;
 
 import java.io.File;
 
-public class StaticDataProvider {
+public class TestDataProvider {
 
     @DataProvider(name = "users")
     public static Object[][] testUsers() {

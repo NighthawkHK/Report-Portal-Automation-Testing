@@ -1,6 +1,6 @@
 package tests.ui;
 
-import core.WebDriverManager;
+import core.DriverSingleton;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,12 +12,12 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        WebDriver driver = WebDriverManager.getDriver();
+        WebDriver driver = DriverSingleton.getDriver();
         driver.navigate().to(URL);
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
-        WebDriverManager.closeDriver();
+        DriverSingleton.closeDriver();
     }
 }
