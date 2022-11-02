@@ -1,6 +1,6 @@
 package utils;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-@Log4j2
+@Slf4j
 public class PropertyReader {
 
     private static final String FILE_PATH = "src/main/resources/application.properties";
@@ -24,10 +24,10 @@ public class PropertyReader {
             properties.load(reader);
             return properties;
         } catch (FileNotFoundException e) {
-            log.error("Configuration file was not found at " + FILE_PATH, e);
+            log.error("Configuration file was not found at {}", FILE_PATH);
             throw new RuntimeException(e);
         } catch (IOException e) {
-            log.error("Something went wrong while reading file " + FILE_PATH, e);
+            log.error("Something went wrong while reading file {}", FILE_PATH);
             throw new RuntimeException(e);
         }
     }

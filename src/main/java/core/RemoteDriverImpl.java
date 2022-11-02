@@ -1,6 +1,6 @@
 package core;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -9,7 +9,7 @@ import utils.PropertyReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-@Log4j2
+@Slf4j
 class RemoteDriverImpl implements DriverFactory {
 
     @Override
@@ -19,8 +19,8 @@ class RemoteDriverImpl implements DriverFactory {
             URL remoteUrl = new URL(PropertyReader.getProperty("sauceLabsUrl"));
             webDriver = new RemoteWebDriver(remoteUrl, getCapabilities());
         } catch (MalformedURLException e) {
-            log.error(e);
-            throw new RuntimeException();
+            log.error("Something went wrong: {}", e.getMessage());
+            throw new RuntimeException(e);
         }
         return webDriver;
     }

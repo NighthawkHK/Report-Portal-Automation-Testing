@@ -1,15 +1,14 @@
 package core;
 
 import listeners.DriverEventListener;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
-import utils.PropertyReader;
 
 import java.time.Duration;
 
-@Log4j2
-public class DriverSingleton {
+@Slf4j
+public final class DriverSingleton {
 
     private static WebDriver driver;
 
@@ -42,7 +41,8 @@ public class DriverSingleton {
                 driver = new RemoteDriverImpl().createDriver();
                 break;
             default:
-                throw new IllegalArgumentException("Undefined host");
+                log.error("Unexpected host parameter: {}", DriverConfig.HOST);
+                throw new IllegalArgumentException();
         }
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitlyWait));

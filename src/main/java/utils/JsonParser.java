@@ -1,12 +1,12 @@
 package utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
 
-@Log4j2
+@Slf4j
 public class JsonParser {
 
     private JsonParser() {
@@ -23,7 +23,7 @@ public class JsonParser {
         try {
             return OBJECT_MAPPER.readValue(source, clazz);
         } catch (IOException e) {
-            log.error("An error occurred while deserializing data from " + source, e);
+            log.error("An error occurred while deserializing data from {}", source);
             throw new RuntimeException(e);
         }
     }
