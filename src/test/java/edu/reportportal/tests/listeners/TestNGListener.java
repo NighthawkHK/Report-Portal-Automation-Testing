@@ -16,7 +16,9 @@ import java.util.Date;
 @Slf4j
 public class TestNGListener implements ITestListener {
 
-    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy HH-mm-ss");
+    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd.MM.yyyy HH-mm-ss");
+    private static final String ROOT_FOLDER = "./target/screenshots-failure/";
+    private static final String FILE_EXTENSION = ".png";
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -33,7 +35,7 @@ public class TestNGListener implements ITestListener {
         log.info("Test Failed: {}", result.getName());
         File srcFile = ((TakesScreenshot) DriverSingleton.getDriver()).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(srcFile, new File("./target/screenshots-failure/" + dateFormatter.format(new Date()) + ".png"));
+            copyFileToDestination(srcFile, ROOT_FOLDER + DATE_FORMATTER.format(new Date()) + FILE_EXTENSION);
         } catch (IOException e) {
             log.error("Exception occurred while copying file: ", e);
         }
@@ -42,5 +44,9 @@ public class TestNGListener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         log.info("Test Skipped: {}", result.getName());
+    }
+
+    private void copyFileToDestination(File sourceFile, String pathName) throws IOException {
+        FileUtils.copyFile(sourceFile, new File(pathName));
     }
 }

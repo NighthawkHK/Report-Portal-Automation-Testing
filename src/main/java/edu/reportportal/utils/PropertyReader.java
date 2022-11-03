@@ -12,7 +12,7 @@ import java.util.Properties;
 public class PropertyReader {
 
     private static final String FILE_PATH = "src/main/resources/application.properties";
-    private static final Properties CONFIG_PROPERTIES = readConfigFile();
+    private static final Properties APP_PROPERTIES = readConfigFile();
 
     private PropertyReader() {
         throw new IllegalStateException("This is utility class.");
@@ -20,9 +20,7 @@ public class PropertyReader {
 
     private static Properties readConfigFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
-            Properties properties = new Properties();
-            properties.load(reader);
-            return properties;
+            return getApplicationProperties(reader);
         } catch (FileNotFoundException e) {
             log.error("Configuration file was not found at {}", FILE_PATH);
             throw new RuntimeException(e);
@@ -33,11 +31,18 @@ public class PropertyReader {
     }
 
     public static String getProperty(final String propertyName) {
-        String property = CONFIG_PROPERTIES.getProperty(propertyName);
+        String property = APP_PROPERTIES.getProperty(propertyName);
         if (property != null) {
             return property;
         } else {
-            throw new RuntimeException(String.format("Property with name '%s' is not specified in the configuration file.", propertyName));
+            log.error("'{}' property is not specified in the configuration file", propertyName);
+            throw new RuntimeException();
         }
+    }
+
+    private static Properties getApplicationProperties(BufferedReader reader) throws IOException {
+        Properties properties = new Properties();
+        properties.load(reader);
+        return properties;
     }
 }
