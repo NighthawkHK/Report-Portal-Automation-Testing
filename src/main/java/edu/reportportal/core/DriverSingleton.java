@@ -4,6 +4,7 @@ import edu.reportportal.listeners.DriverEventListener;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
+import org.openqa.selenium.support.events.WebDriverListener;
 
 import java.time.Duration;
 
@@ -32,10 +33,10 @@ public final class DriverSingleton {
     private static void initializeDriver() {
         switch (DriverConfig.HOST) {
             case "LOCAL":
-                driver = new LocalDriverImpl(DriverConfig.BROWSER).createDriver();
+                driver = new LocalDriverImpl().createDriver(DriverConfig.BROWSER);
                 break;
             case "REMOTE":
-                driver = new RemoteDriverImpl().createDriver();
+                driver = new RemoteDriverImpl().createDriver(DriverConfig.BROWSER);
                 break;
             default:
                 log.error("Unexpected host parameter: {}", DriverConfig.HOST);
@@ -51,6 +52,8 @@ public final class DriverSingleton {
     }
 
     private static void decorateDriver() {
-        driver = new EventFiringDecorator(new DriverEventListener()).decorate(driver);
+        WebDriverListener[] listeners = {new DriverEventListener()};
+
+        driver = new EventFiringDecorator(listeners).decorate(driver);
     }
 }

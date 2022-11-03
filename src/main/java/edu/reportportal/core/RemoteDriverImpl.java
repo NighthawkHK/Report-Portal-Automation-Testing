@@ -13,11 +13,11 @@ import java.net.URL;
 class RemoteDriverImpl implements DriverFactory {
 
     @Override
-    public WebDriver createDriver() {
+    public WebDriver createDriver(Browser browser) {
         WebDriver webDriver;
         try {
             URL remoteUrl = new URL(PropertyReader.getProperty("sauceLabsUrl"));
-            webDriver = new RemoteWebDriver(remoteUrl, getCapabilities());
+            webDriver = new RemoteWebDriver(remoteUrl, getCapabilities(browser));
         } catch (MalformedURLException e) {
             log.error("Something went wrong: {}", e.getMessage());
             throw new RuntimeException(e);
@@ -25,9 +25,9 @@ class RemoteDriverImpl implements DriverFactory {
         return webDriver;
     }
 
-    private MutableCapabilities getCapabilities() {
+    private MutableCapabilities getCapabilities(Browser browser) {
         MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("browserName", PropertyReader.getProperty("browserType").toLowerCase());
+        capabilities.setCapability("browserName", browser.name());
         capabilities.setCapability("browserVersion", "latest");
         capabilities.setCapability("platformName", "Windows 11");
         capabilities.setCapability("sauce:options", getSauceOptions());

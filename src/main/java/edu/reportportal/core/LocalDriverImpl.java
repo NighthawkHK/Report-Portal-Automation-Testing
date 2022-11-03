@@ -9,14 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 @Slf4j
 class LocalDriverImpl implements DriverFactory {
 
-    private final Browser browser;
-
-    public LocalDriverImpl(Browser browser) {
-        this.browser = browser;
-    }
-
     @Override
-    public WebDriver createDriver() {
+    public WebDriver createDriver(Browser browser) {
         WebDriver webDriver;
         switch (browser) {
             case CHROME:

@@ -1,10 +1,10 @@
 package edu.reportportal.tests.ui;
 
 import edu.reportportal.entities.User;
-import edu.reportportal.listeners.TestNGListener;
 import edu.reportportal.pages.DashboardPage;
 import edu.reportportal.pages.LeftPanelMenu;
 import edu.reportportal.pages.LoginPage;
+import edu.reportportal.tests.listeners.TestNGListener;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;

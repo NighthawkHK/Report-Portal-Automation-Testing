@@ -1,4 +1,4 @@
-package edu.reportportal.listeners;
+package edu.reportportal.tests.listeners;
 
 import edu.reportportal.core.DriverSingleton;
 import lombok.extern.slf4j.Slf4j;
