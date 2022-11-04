@@ -1,8 +1,6 @@
 package edu.reportportal.core;
 
-import edu.reportportal.utils.PropertyReader;
 import lombok.extern.slf4j.Slf4j;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -16,8 +14,8 @@ class RemoteDriverImpl implements DriverFactory {
     public WebDriver createDriver(Browser browser) {
         WebDriver webDriver;
         try {
-            URL remoteUrl = new URL(PropertyReader.getProperty("sauceLabsUrl"));
-            webDriver = new RemoteWebDriver(remoteUrl, getCapabilities(browser));
+            URL remoteUrl = new URL(Config.SAUCE_URL);
+            webDriver = new RemoteWebDriver(remoteUrl, Config.getSauceLabsCapabilities(browser));
         } catch (MalformedURLException e) {
             log.error("Something went wrong: {}", e.getMessage());
             throw new RuntimeException(e);
@@ -25,23 +23,21 @@ class RemoteDriverImpl implements DriverFactory {
         return webDriver;
     }
 
-    private MutableCapabilities getCapabilities(Browser browser) {
-        MutableCapabilities capabilities = new MutableCapabilities();
-        capabilities.setCapability("browserName", browser.name());
-        capabilities.setCapability("browserVersion", "latest");
-        capabilities.setCapability("platformName", "Windows 11");
-        capabilities.setCapability("sauce:options", getSauceOptions());
-
-        return capabilities;
-    }
-
-    private MutableCapabilities getSauceOptions() {
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", PropertyReader.getProperty("username"));
-        sauceOptions.setCapability("accessKey", PropertyReader.getProperty("accessKey"));
-        sauceOptions.setCapability("name", PropertyReader.getProperty("name"));
-        sauceOptions.setCapability("tunnelName", PropertyReader.getProperty("tunnelName"));
-
-        return sauceOptions;
-    }
+//    private MutableCapabilities getCapabilities(Browser browser) {
+//        MutableCapabilities capabilities = new MutableCapabilities();
+//        capabilities.setCapability("browser.name", browser.name());
+//        capabilities.setCapability("browserVersion", "latest");
+//        capabilities.setCapability("platformName", "Windows 11");
+//        capabilities.setCapability("sauce:options", getSauceOptions());
+//        return capabilities;
+//    }
+//
+//    private MutableCapabilities getSauceOptions() {
+//        MutableCapabilities sauceOptions = new MutableCapabilities();
+//        sauceOptions.setCapability("username", Config.SAUCE_USER);
+//        sauceOptions.setCapability("accessKey", Config.SAUCE_KEY);
+//        sauceOptions.setCapability("name", Config.SAUCE_NAME);
+//        sauceOptions.setCapability("tunnelName", Config.SAUCE_TUNNEL);
+//        return sauceOptions;
+//    }
 }

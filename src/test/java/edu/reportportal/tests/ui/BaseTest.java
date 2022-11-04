@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeClass;
 
 public abstract class BaseTest {
 
-    private static final String URL = PropertyReader.getProperty("url");
+    private static final String URL = PropertyReader.getProperty("app.base.url");
 
     @BeforeClass
     public void setUp() {

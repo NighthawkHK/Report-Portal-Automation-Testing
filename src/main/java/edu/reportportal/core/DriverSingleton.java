@@ -1,6 +1,7 @@
 package edu.reportportal.core;
 
 import edu.reportportal.listeners.DriverEventListener;
+import edu.reportportal.utils.PropertyReader;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
@@ -9,7 +10,7 @@ import org.openqa.selenium.support.events.WebDriverListener;
 import java.time.Duration;
 
 @Slf4j
-public final class DriverSingleton {
+public class DriverSingleton {
 
     private static WebDriver driver;
 
@@ -31,15 +32,15 @@ public final class DriverSingleton {
     }
 
     private static void initializeDriver() {
-        switch (DriverConfig.HOST) {
+        switch (Config.HOST) {
             case "LOCAL":
-                driver = new LocalDriverImpl().createDriver(DriverConfig.BROWSER);
+                driver = new LocalDriverImpl().createDriver(Config.BROWSER_NAME);
                 break;
             case "REMOTE":
-                driver = new RemoteDriverImpl().createDriver(DriverConfig.BROWSER);
+                driver = new RemoteDriverImpl().createDriver(Config.BROWSER_NAME);
                 break;
             default:
-                log.error("Unexpected host parameter: {}", DriverConfig.HOST);
+                log.error("Unexpected host parameter: {}", Config.HOST);
                 throw new IllegalArgumentException();
         }
         setupDriverOptions();
@@ -47,13 +48,13 @@ public final class DriverSingleton {
     }
 
     private static void setupDriverOptions() {
+        long waitImplicitly = Long.parseLong(PropertyReader.getProperty("implicit.wait"));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DriverConfig.WAIT_IMPLICITLY));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(waitImplicitly));
     }
 
     private static void decorateDriver() {
         WebDriverListener[] listeners = {new DriverEventListener()};
-
         driver = new EventFiringDecorator(listeners).decorate(driver);
     }
 }

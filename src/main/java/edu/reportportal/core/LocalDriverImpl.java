@@ -1,10 +1,9 @@
 package edu.reportportal.core;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 @Slf4j
 class LocalDriverImpl implements DriverFactory {
@@ -12,21 +11,19 @@ class LocalDriverImpl implements DriverFactory {
     @Override
     public WebDriver createDriver(Browser browser) {
         WebDriver webDriver;
+        MutableCapabilities capabilities = Config.getDefaultCapabilities(browser);
         switch (browser) {
             case CHROME:
-                io.github.bonigarcia.wdm.WebDriverManager.chromedriver().setup();
-                webDriver = new ChromeDriver();
+                webDriver = WebDriverManager.chromedriver().capabilities(capabilities).create();
                 break;
             case FIREFOX:
-                io.github.bonigarcia.wdm.WebDriverManager.firefoxdriver().setup();
-                webDriver = new FirefoxDriver();
+                webDriver = WebDriverManager.firefoxdriver().capabilities(capabilities).create();
                 break;
             case EDGE:
-                io.github.bonigarcia.wdm.WebDriverManager.edgedriver().setup();
-                webDriver = new EdgeDriver();
+                webDriver = WebDriverManager.edgedriver().capabilities(capabilities).create();
                 break;
             default:
-                log.error("Unrecognized browser: {}", browser);
+                log.error("Unrecognized browser type: {}", browser);
                 throw new IllegalArgumentException();
         }
         return webDriver;

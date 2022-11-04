@@ -19,11 +19,11 @@ public abstract class BaseApiServiceTest {
 
     @BeforeClass
     public void setUp() {
-        RestAssured.port = Integer.parseInt(PropertyReader.getProperty("serverPort"));
-        RestAssured.baseURI = PropertyReader.getProperty("baseURI");
+        RestAssured.port = Integer.parseInt(PropertyReader.getProperty("server.port"));
+        RestAssured.baseURI = PropertyReader.getProperty("app.base.uri");
         determineLog();
         setAuthenticationToken();
-        RestAssured.basePath = PropertyReader.getProperty("basePath");
+        RestAssured.basePath = PropertyReader.getProperty("api.base.path");
 
         requestSpec = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
@@ -62,7 +62,7 @@ public abstract class BaseApiServiceTest {
     }
 
     private void determineLog() {
-        boolean logAll = Boolean.parseBoolean(PropertyReader.getProperty("logAll"));
+        boolean logAll = Boolean.parseBoolean(PropertyReader.getProperty("log.all"));
         if (logAll)
             RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter(), new ErrorLoggingFilter());
         else

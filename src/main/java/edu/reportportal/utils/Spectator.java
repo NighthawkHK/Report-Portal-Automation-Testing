@@ -9,14 +9,14 @@ import java.util.function.Function;
 
 public class Spectator {
 
-    private static final long DEFAULT_EXPLICIT_WAITER = Long.parseLong(PropertyReader.getProperty("explicitlyWait"));
+    private static final long EXPLICIT_WAITER_BY_DEFAULT = Long.parseLong(PropertyReader.getProperty("explicit.wait"));
 
     private Spectator() {
         throw new IllegalStateException("This is Utility class.");
     }
 
     public static WebDriverWait getWebDriverWait(final WebDriver driver) {
-        return new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_EXPLICIT_WAITER), Duration.ofMillis(500));
+        return new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAITER_BY_DEFAULT), Duration.ofMillis(500));
     }
 
     public static void waitForPageToLoad(final WebDriver driver) {
