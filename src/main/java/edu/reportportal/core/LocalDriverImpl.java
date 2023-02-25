@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 @Slf4j
 class LocalDriverImpl implements DriverFactory {
@@ -14,7 +16,10 @@ class LocalDriverImpl implements DriverFactory {
         MutableCapabilities capabilities = Config.getDefaultCapabilities(browser);
         switch (browser) {
             case CHROME:
-                webDriver = WebDriverManager.chromedriver().capabilities(capabilities).create();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setBrowserVersion("95").addArguments("--incognito");
+                WebDriverManager.chromedriver().capabilities(capabilities).setup();
+                webDriver = new ChromeDriver(chromeOptions);
                 break;
             case FIREFOX:
                 webDriver = WebDriverManager.firefoxdriver().capabilities(capabilities).create();

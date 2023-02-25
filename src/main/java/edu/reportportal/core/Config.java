@@ -22,7 +22,7 @@ class Config {
     public static MutableCapabilities getDefaultCapabilities(Browser browser) {
         MutableCapabilities capabilities = new MutableCapabilities();
         capabilities.setCapability("browserName", BROWSER_NAME);
-        capabilities.setCapability("browserVersion", BROWSER_VERSION);
+        capabilities.setCapability("version", BROWSER_VERSION);
         switch (browser) {
             case CHROME:
             case EDGE:
